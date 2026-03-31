@@ -68,28 +68,44 @@
 
             // 페이지 상단의 '언어 선택 Select Box' 값과 현재 적용된 번역 쿠키 동기화
             setTimeout(() => {
-                const match = document.cookie.match(/googtrans=\/ko\/([^;]+)/);
-                const currentLang = match ? match[1] : 'ko';
+                let currentLang = 'ko';
+                const cookies = document.cookie.split('; ');
+                for (let i = 0; i < cookies.length; i++) {
+                    if (cookies[i].startsWith('googtrans=')) {
+                        const parts = cookies[i].split('=')[1].split('/');
+                        if (parts.length === 3) {
+                            currentLang = parts[2]; // e.g., "en" from "/ko/en"
+                        }
+                        break;
+                    }
+                }
                 const selectField = document.getElementById('custom-lang-select');
                 if (selectField && selectField.value !== currentLang) {
-                    selectField.value = currentLang;
+                    const validLangs = ['ko','en','zh-CN','mn','ru','kk','uz','ar','ja','id','th','vi'];
+                    if(validLangs.includes(currentLang)) {
+                        selectField.value = currentLang;
+                    }
                 }
             }, 500);
         }
 
         // 수동 언어 변경 함수
         function changeLangManual(langCode) {
-            const selectField = document.querySelector(".goog-te-combo");
-            if (selectField) {
-                selectField.value = langCode;
-                selectField.dispatchEvent(new Event('change'));
-                // 확실한 적용을 위해 쿠키 직접 수정
-                document.cookie = "googtrans=/ko/" + langCode + "; path=/;";
+            // 구글 번역기 내부 이벤트를 건드리지 않고, 확실하게 쿠키 제어 후 새로고침하는 방식으로 변경
+            if (langCode === 'ko') {
+                // 한국어(원본) 선택 시 모든 번역 쿠키 삭제
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + window.location.hostname + "; path=/;";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=." + window.location.hostname + "; path=/;";
             } else {
-                // 구글 번역 위젯 로딩 지연 또는 누락 시 쿠키를 사용해 강제 번역 적용
+                // 다른 언어 선택 시 해당 언어 코드로 쿠키 설정 (도메인 포함)
                 document.cookie = "googtrans=/ko/" + langCode + "; path=/;";
-                window.location.reload();
+                document.cookie = "googtrans=/ko/" + langCode + "; domain=" + window.location.hostname + "; path=/;";
+                document.cookie = "googtrans=/ko/" + langCode + "; domain=." + window.location.hostname + "; path=/;";
             }
+            
+            // 변경된 쿠키를 바탕으로 구글 번역기가 재적용되도록 페이지 새로고침
+            window.location.reload();
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
