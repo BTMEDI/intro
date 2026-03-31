@@ -24,12 +24,57 @@
 
     <!-- Google Translate API -->
     <script type="text/javascript">
+        // 1. 브라우저/OS 언어 자동 감지 및 초기 번역 설정
+        function autoSetLanguage() {
+            // 이미 구글 번역 쿠키가 있거나, 사이트에 한 번이라도 방문한 적이 있다면 실행하지 않음 (사용자 선택 존중 및 무한 로딩 방지)
+            if (document.cookie.indexOf('googtrans=') !== -1 || localStorage.getItem('hasVisitedBTMEDI')) {
+                return;
+            }
+            
+            // 첫 방문 기록 저장
+            localStorage.setItem('hasVisitedBTMEDI', 'true');
+
+            // 사용자 브라우저 언어 추출 (예: 'en-US' -> 'en', 'ko-KR' -> 'ko')
+            const userLang = navigator.language || navigator.userLanguage;
+            const langCode = userLang.split('-')[0].toLowerCase(); 
+
+            let targetLang = 'en'; // 1. 지원하지 않는 언어일 경우 기본값을 영어(en)로 설정
+            
+            // 2. 한국어인 경우 유지, 중국어 예외 처리 및 지원 언어 매핑
+            if (langCode === 'ko') {
+                targetLang = 'ko'; // 한국어는 원본 페이지이므로 번역 불필요
+            } else if (langCode === 'zh') {
+                targetLang = 'zh-CN';
+            } else if (['en', 'mn', 'ru', 'kk', 'uz', 'ar', 'ja', 'id', 'th', 'vi'].includes(langCode)) {
+                targetLang = langCode;
+            }
+            
+            // 타겟 언어가 한국어(ko)가 아니라면 쿠키 설정 후 페이지 새로고침하여 번역 적용
+            if (targetLang !== 'ko') {
+                document.cookie = "googtrans=/ko/" + targetLang + "; path=/;";
+                window.location.reload();
+            }
+        }
+        
+        // 스크립트 로드 시 즉시 자동 언어 설정 실행
+        autoSetLanguage();
+
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'ko', 
                 includedLanguages: 'ko,en,zh-CN,mn,ru,kk,uz,ar,ja,id,th,vi',
                 autoDisplay: false
             }, 'google_translate_element');
+
+            // 페이지 상단의 '언어 선택 Select Box' 값과 현재 적용된 번역 쿠키 동기화
+            setTimeout(() => {
+                const match = document.cookie.match(/googtrans=\/ko\/([^;]+)/);
+                const currentLang = match ? match[1] : 'ko';
+                const selectField = document.getElementById('custom-lang-select');
+                if (selectField && selectField.value !== currentLang) {
+                    selectField.value = currentLang;
+                }
+            }, 500);
         }
 
         // 수동 언어 변경 함수
@@ -38,6 +83,8 @@
             if (selectField) {
                 selectField.value = langCode;
                 selectField.dispatchEvent(new Event('change'));
+                // 확실한 적용을 위해 쿠키 직접 수정
+                document.cookie = "googtrans=/ko/" + langCode + "; path=/;";
             } else {
                 // 구글 번역 위젯 로딩 지연 또는 누락 시 쿠키를 사용해 강제 번역 적용
                 document.cookie = "googtrans=/ko/" + langCode + "; path=/;";
