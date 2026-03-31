@@ -25,12 +25,26 @@
             }, 'google_translate_element');
         }
 
-        // 수동 언어 변경 함수
+        /**
+         * 수동 언어 변경 함수
+         * 구글 번역기 내부의 숨겨진 선택박스를 찾아 값을 변경하고 이벤트를 발생시킵니다.
+         */
         function changeLangManual(langCode) {
             const selectField = document.querySelector(".goog-te-combo");
             if (selectField) {
                 selectField.value = langCode;
-                selectField.dispatchEvent(new Event('change'));
+                // 구글 번역 스크립트가 변화를 감지할 수 있도록 이벤트를 트리거합니다.
+                if (typeof(Event) === 'function') {
+                    selectField.dispatchEvent(new Event('change', { bubbles: true }));
+                } else {
+                    // 구형 브라우저 대응
+                    const event = document.createEvent('HTMLEvents');
+                    event.initEvent('change', true, true);
+                    selectField.dispatchEvent(event);
+                }
+            } else {
+                // 번역기가 아직 로드되지 않았을 경우를 대비해 짧은 시간 후 재시도
+                setTimeout(() => changeLangManual(langCode), 500);
             }
         }
     </script>
@@ -45,8 +59,7 @@
                         sky: { 600: '#0284c7', 700: '#0369a1' }
                     },
                     fontFamily: {
-                        sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
-                        cursive: ['Georgia', 'serif']
+                        sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif']
                     }
                 }
             }
@@ -57,10 +70,11 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Pretendard', sans-serif; background-color: #fafaf9; color: #292524; position: relative; top: 0 !important; }
         
-        /* 구글 번역 바 숨기기 및 UI 정돈 */
-        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        /* 구글 번역 UI 숨기기 및 정돈 */
+        .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame { display: none !important; }
         body { top: 0px !important; }
         .goog-te-gadget-simple { display: none !important; }
+        .skiptranslate iframe { display: none !important; }
 
         .chart-container { position: relative; width: 100%; max-width: 800px; margin: 0 auto; height: 350px; overflow: hidden; }
         .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
@@ -69,15 +83,15 @@
         .timeline-step { border-left: 2px solid #cbd5e1; padding-left: 2rem; position: relative; margin-bottom: 3rem; }
         .timeline-step::before { content: ''; position: absolute; left: -0.55rem; top: 0; width: 1rem; height: 1rem; background-color: #0284c7; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         
-        .filter-btn { transition: all 0.2s; font-size: 0.7rem; font-weight: bold; border-width: 1px; }
+        .filter-btn { transition: all 0.2s; font-size: 0.7rem; font-weight: bold; border: 1px solid #d1d5db; padding: 0.5rem 1rem; border-radius: 9999px; }
         .filter-btn.active { background-color: #0284c7; color: white; border-color: #0284c7; }
+        
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
         
         .org-line-v { width: 2px; background-color: #e7e5e4; height: 24px; margin: 0 auto; }
         .org-line-h { height: 2px; background-color: #e7e5e4; width: 100%; }
         
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         
         .handwritten-card { background-color: #fffef0; border: 1px solid #e2e2ca; box-shadow: 5px 5px 15px rgba(0,0,0,0.05); line-height: 1.8; position: relative; }
