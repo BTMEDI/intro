@@ -20,31 +20,20 @@
             new google.translate.TranslateElement({
                 pageLanguage: 'ko', 
                 includedLanguages: 'ko,en,zh-CN,mn,ru,kk,uz,ar,ja,id,th,vi',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
             }, 'google_translate_element');
         }
 
-        /**
-         * 수동 언어 변경 함수
-         * 구글 번역기 내부의 숨겨진 선택박스를 찾아 값을 변경하고 이벤트를 발생시킵니다.
-         */
+        // 수동 언어 변경 함수
         function changeLangManual(langCode) {
             const selectField = document.querySelector(".goog-te-combo");
             if (selectField) {
                 selectField.value = langCode;
-                // 구글 번역 스크립트가 변화를 감지할 수 있도록 이벤트를 트리거합니다.
-                if (typeof(Event) === 'function') {
-                    selectField.dispatchEvent(new Event('change', { bubbles: true }));
-                } else {
-                    // 구형 브라우저 대응
-                    const event = document.createEvent('HTMLEvents');
-                    event.initEvent('change', true, true);
-                    selectField.dispatchEvent(event);
-                }
+                selectField.dispatchEvent(new Event('change'));
             } else {
-                // 번역기가 아직 로드되지 않았을 경우를 대비해 짧은 시간 후 재시도
-                setTimeout(() => changeLangManual(langCode), 500);
+                // 구글 번역 위젯 로딩 지연 또는 누락 시 쿠키를 사용해 강제 번역 적용
+                document.cookie = "googtrans=/ko/" + langCode + "; path=/;";
+                window.location.reload();
             }
         }
     </script>
@@ -141,7 +130,7 @@
                         <option value="th">THAI (태국어)</option>
                         <option value="vi">VIETNAMESE (베트남어)</option>
                     </select>
-                    <div id="google_translate_element" style="display:none;"></div>
+                    <div id="google_translate_element" style="position: absolute; left: -9999px; width: 0; height: 0; overflow: hidden; z-index: -1;"></div>
                 </div>
             </div>
         </div>
