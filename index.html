@@ -224,32 +224,27 @@
         </div>
     </header>
 
-    <!-- 1. CEO Section -->
+    <!-- 1. About Section (이전 CEO Section 대체) -->
     <section id="about" class="py-20 bg-white border-t border-stone-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-sm font-bold text-sky-600 tracking-wide uppercase mb-2">CEO & Core Values</h2>
-                <h3 class="text-3xl font-bold text-stone-900 mb-4">IT 기술은 차갑지만, 의료는 따뜻해야 합니다.</h3>
+                <h2 class="text-sm font-bold text-sky-600 tracking-wide uppercase mb-2">About Us & Core Values</h2>
+                <h3 class="text-2xl md:text-3xl font-bold text-stone-900 mb-4 leading-tight">대한민국 의료관광을 선도하는<br class="hidden md:block"> Top-Tier 전문업체, BTMEDI</h3>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start fade-in">
-                <div class="lg:col-span-1 flex flex-col items-center">
-                    <div class="relative w-64 h-80 rounded-2xl overflow-hidden shadow-2xl border-4 border-white mb-6 transform -rotate-1 text-left">
-                        <img src="image_6a7107.png" class="absolute inset-0 w-full h-full object-cover" alt="CEO">
-                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-stone-900 to-transparent">
-                            <p class="text-white font-bold text-lg">주형진 Ju, Hyung Jin</p>
-                            <p class="text-sky-400 text-xs uppercase tracking-widest font-bold">CEO</p>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center fade-in">
+                <!-- 썸네일 이미지 영역 (기존 CEO 프로필 대체) -->
+                <div class="lg:col-span-1 flex flex-col justify-center">
+                    <div class="relative w-full aspect-video md:aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-white group">
+                        <img src="thumbnail.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="BTMEDI Corporate Image" onerror="this.onerror=null; this.src='https://placehold.co/600x800/e2e8f0/64748b?text=[비티메디 대표 이미지]';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/20 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-left">
+                            <div class="w-10 h-1 bg-sky-500 mb-3"></div>
+                            <p class="text-white font-extrabold text-xl mb-1 uppercase tracking-wide">Connecting Life<br>and Technology</p>
+                            <p class="text-sky-400 text-xs uppercase tracking-widest font-bold">Global Healthcare Leader</p>
                         </div>
                     </div>
-                    <div class="bg-stone-50 p-6 rounded-xl border border-stone-200 w-full shadow-sm text-left">
-                        <h4 class="font-bold text-stone-900 mb-4 flex items-center text-sm uppercase"><span class="mr-2 text-sky-600">&#x1F4BC;</span> 주요 경력</h4>
-                        <ul class="space-y-3 text-stone-600 text-xs leading-relaxed">
-                            <li>- 현) 의료관광유치사업자협회 추진위 회장</li>
-                            <li>- 현) 정보통신산업진흥원(NIPA) 평가위원</li>
-                            <li>- 전문가 과정 출강 및 다수 표창</li>
-                            <li>- 고양시장 표창 2회 (사회봉사 유공)</li>
-                        </ul>
-                    </div>
                 </div>
+                <!-- 핵심 가치 영역 (유지) -->
                 <div class="lg:col-span-2 space-y-8 text-left">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="card-hover bg-white p-6 rounded-xl border border-stone-200 shadow-sm transition-all">
@@ -269,6 +264,73 @@
                         </div>
                     </div>
                     <blockquote class="border-l-4 border-sky-600 pl-6 py-2 italic text-stone-600 text-lg leading-relaxed">"비티메디는 단순한 의료 관광 대행을 넘어, 전 세계인에게 최적의 의료 기회를 제공하고 대한민국 글로벌 헬스케어의 중심 역할을 수행하고 있습니다."</blockquote>
+                </div>
+            </div>
+
+            <!-- 추가된 BTMEDI 서비스 특장점 및 절차 (업로드된 이미지 내용 반영) -->
+            <div class="mt-24 border-t border-stone-100 pt-20">
+                <!-- 1. Safe and Easy Banner -->
+                <div class="bg-gradient-to-br from-sky-50 to-white rounded-[2rem] p-10 md:p-14 flex flex-col md:flex-row items-center justify-between shadow-sm border border-sky-100 fade-in mb-20 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-sky-200 rounded-full opacity-30 blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                    <div class="mb-10 md:mb-0 md:pr-10 z-10 text-center md:text-left">
+                        <h4 class="text-4xl md:text-5xl font-extrabold text-stone-900 mb-6 leading-tight font-sans tracking-tight">Medical Travel To Korea<br><span class="text-sky-800">Safe and Easy</span><br>Why Wait?</h4>
+                        <p class="text-stone-500 text-lg">The most flexible way of get a treatment in Korea and maximize its effectiveness.</p>
+                    </div>
+                    <div class="w-full md:w-1/3 z-10 flex justify-center">
+                        <img src="BTMEDI PICTURES_en.jpg" alt="Medical Travel Illustration" class="w-full max-w-[300px] md:max-w-full h-auto drop-shadow-xl rounded-2xl" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e0f2fe/0369a1?text=Medical+Travel+Illustration';">
+                    </div>
+                </div>
+
+                <!-- 2. 3 Steps & Why Choose Us -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 fade-in">
+                    <!-- 3 Simple Steps -->
+                    <div class="bg-white p-10 rounded-3xl shadow-sm border border-stone-200 flex flex-col justify-center h-full card-hover">
+                        <h4 class="text-xl font-extrabold text-sky-800 mb-10 text-center uppercase tracking-wide">3 Simple Steps To Successful Treatment</h4>
+                        <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                            <div class="text-center flex flex-col items-center">
+                                <div class="w-20 h-20 bg-stone-50 rounded-full shadow-inner flex items-center justify-center text-3xl mb-4 border border-stone-200 text-stone-700">&#x1F4CB;</div>
+                                <p class="font-bold text-stone-800 text-sm uppercase">Submit<br>Request</p>
+                            </div>
+                            <div class="hidden sm:block text-stone-300 text-2xl">&#x25B6;</div>
+                            <div class="text-center flex flex-col items-center">
+                                <div class="w-20 h-20 bg-stone-50 rounded-full shadow-inner flex items-center justify-center text-4xl mb-4 border border-stone-200 text-sky-600">&#x1F468;&#x200D;&#x2695;&#xFE0F;</div>
+                                <p class="font-bold text-stone-800 text-sm uppercase">Get<br>Medical Opinion</p>
+                            </div>
+                            <div class="hidden sm:block text-stone-300 text-2xl">&#x25B6;</div>
+                            <div class="text-center flex flex-col items-center">
+                                <div class="w-20 h-20 bg-stone-50 rounded-full shadow-inner flex items-center justify-center text-4xl mb-4 border border-stone-200 text-stone-700">&#x2708;&#xFE0F;</div>
+                                <p class="font-bold text-stone-800 text-sm uppercase">Travel<br>To Korea</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Why Choose Us -->
+                    <div class="bg-white p-10 rounded-3xl shadow-sm border border-stone-200 flex flex-col justify-center h-full card-hover">
+                        <h4 class="text-xl font-extrabold text-sky-800 mb-10 text-center uppercase tracking-wide">Why Choose BTMEDI?</h4>
+                        <div class="flex flex-col sm:flex-row justify-center items-start gap-6">
+                            <div class="text-center flex flex-col items-center flex-1">
+                                <div class="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center text-sky-700 text-2xl mb-4 shadow-sm">&#x1F4AC;</div>
+                                <p class="font-bold text-stone-800 text-xs uppercase leading-relaxed">Dedicated<br>1:1 Assistance</p>
+                            </div>
+                            <div class="text-center flex flex-col items-center flex-1">
+                                <div class="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center text-sky-700 text-2xl mb-4 shadow-sm">&#x1F4B2;</div>
+                                <p class="font-bold text-stone-800 text-xs uppercase leading-relaxed">Smart Budget<br>Solutions</p>
+                            </div>
+                            <div class="text-center flex flex-col items-center flex-1">
+                                <div class="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center text-sky-700 text-2xl mb-4 shadow-sm">&#x1F464;</div>
+                                <p class="font-bold text-stone-800 text-xs uppercase leading-relaxed">Certified<br>Medical Translation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tailored Solutions Banner -->
+                <div class="mt-12 bg-stone-900 text-center p-10 rounded-[2rem] shadow-2xl fade-in relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg width=\\'20\\' height=\\'20\\' viewBox=\\'0 0 20 20\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'%23ffffff\\' fill-opacity=\\'1\\' fill-rule=\\'evenodd\\'%3E%3Ccircle cx=\\'3\\' cy=\\'3\\' r=\\'3\\'/%3E%3Cg/%3E%3C/svg%3E')]"></div>
+                    <div class="relative z-10">
+                        <p class="text-sky-400 font-bold uppercase tracking-widest text-sm mb-4">Tailored Healthcare Solutions</p>
+                        <p class="text-white text-xl md:text-3xl font-serif italic tracking-wide">"From diagnosis to recovery, we are with you."</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -520,19 +582,39 @@
             <h3 class="text-3xl font-bold text-stone-900 mb-16 fade-in uppercase">국경 없는 나눔으로 전하는 희망</h3>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start fade-in text-left">
                 <div class="grid grid-cols-1 gap-4">
-                    <div class="relative group overflow-hidden rounded-2xl shadow-lg border border-stone-200 aspect-[4/3] bg-stone-100"><img src="image_6a5ede.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Impact"></div>
+                    <div class="relative group overflow-hidden rounded-2xl shadow-lg border border-stone-200 aspect-[4/3] bg-stone-100">
+                        <img src="image_6a5ede.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Impact" onerror="this.onerror=null; this.src='https://placehold.co/800x600/e2e8f0/64748b?text=Social+Impact';">
+                    </div>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="rounded-2xl overflow-hidden shadow-md aspect-square bg-stone-100"><img src="image_6a5f3f.jpg" class="w-full h-full object-cover" alt="Child"></div>
-                        <div class="rounded-2xl overflow-hidden shadow-md aspect-square bg-stone-100 relative"><img src="image_6a6203.png" class="w-full h-full object-cover" alt="Smile"><div class="absolute top-2 left-2 bg-rose-500 text-white text-[8px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-widest">Hope</div></div>
+                        <div class="rounded-2xl overflow-hidden shadow-md aspect-square bg-stone-100">
+                            <img src="image_6a5f3f.jpg" class="w-full h-full object-cover" alt="Child" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/64748b?text=Child';">
+                        </div>
+                        <div class="rounded-2xl overflow-hidden shadow-md aspect-square bg-stone-100 relative">
+                            <img src="image_6a6203.png" class="w-full h-full object-cover" alt="Smile" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/64748b?text=Smile';">
+                            <div class="absolute top-2 left-2 bg-rose-500 text-white text-[8px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-widest">Hope</div>
+                        </div>
                     </div>
                 </div>
                 <div class="flex flex-col gap-6">
-                    <div class="handwritten-card p-10 rounded-lg shadow-2xl min-h-[550px] transform lg:rotate-1 text-justify font-serif italic text-sm text-stone-700">
-                        <p class="mb-4">"Hello, Good morning po, this is Unice..."</p>
-                        <p class="mb-4">"Thank you so much for helping me come to Korea. Thank you so much for making the surgery so comfortable... Even though I haven't met you and I don't know you well, you still help me."</p>
-                        <p class="mb-4">"I am also very grateful to the Korean government. Thank you for giving me a new life and I will remember it as a warm country."</p>
-                        <p>"All the good deeds and efforts you have given me are valuable, irretrievable, and unforgettable. Once again, thank you very much po and wish po a blessing! ♡ ☺"</p>
-                        <div class="mt-12 pt-8 border-t border-stone-200/50 text-stone-400 text-[10px] text-right italic font-sans">— 2022-2024 보건복지부 나눔의료 선정 사례</div>
+                    <div class="handwritten-card p-6 md:p-10 rounded-lg shadow-2xl transform lg:rotate-1 flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start text-sm text-stone-700">
+                        <!-- 편지 이미지 영역 (왼쪽) -->
+                        <div class="w-full md:w-5/12 shrink-0 relative transform sm:-rotate-2 hover:rotate-0 transition-transform duration-300">
+                            <!-- 테이프 느낌 장식 -->
+                            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-12 h-4 bg-stone-100/80 backdrop-blur-sm rotate-[-4deg] z-10 shadow-sm border border-stone-200"></div>
+                            <img src="letter_original.jpg" alt="감사 편지 원본" class="w-full h-auto object-cover rounded shadow-md border border-stone-100" onerror="this.onerror=null; this.src='https://placehold.co/300x450/fefce8/d4d4d8?text=Letter+Image';">
+                        </div>
+                        <!-- 편지 텍스트 영역 (오른쪽) -->
+                        <div class="w-full md:w-7/12 text-justify font-serif italic flex flex-col justify-center">
+                            <p class="mb-3">"Hello, Good morning po, this is Unice.</p>
+                            <p class="mb-3">Thank you so much for helping me come to Korea. Thank you so much for making the surgery so comfortable... Even though I haven't met you and I don't know you well, you still help me.</p>
+                            <p class="mb-3">I am also very grateful to the Korean government. Thank you for giving me a new life and I will remember it as a warm country.</p>
+                            <p class="mb-3">I cannot express my gratitude for the many sacrifices of those who helped and for preparing everything for me.</p>
+                            <p class="mb-3">All the good deeds and efforts you have given me are valuable, irretrievable, and unforgettable.</p>
+                            <p class="mb-4">Once again, thank you very much po and wish po a blessing! ☺♡"</p>
+                            <div class="mt-2 pt-6 border-t border-stone-200/50 text-stone-500 text-[10px] text-right font-sans font-bold leading-relaxed tracking-tight">
+                                — 비티메디를 통해 무료 수술을 받은<br>가정형편이 어려운 어린이 심장병환자 감사편지
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
