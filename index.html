@@ -46,9 +46,11 @@
             // 2. 한국어인 경우 유지, 중국어 예외 처리 및 지원 언어 매핑
             if (langCode === 'ko') {
                 targetLang = 'ko'; // 한국어는 원본 페이지이므로 번역 불필요
+            } else if (userLang === 'zh-TW' || userLang === 'zh-HK' || userLang === 'zh-MO') {
+                targetLang = 'zh-TW'; // 대만, 홍콩, 마카오 등은 번체 적용
             } else if (langCode === 'zh') {
-                targetLang = 'zh-CN';
-            } else if (['en', 'mn', 'ru', 'kk', 'uz', 'ar', 'ja', 'id', 'th', 'vi'].includes(langCode)) {
+                targetLang = 'zh-CN'; // 그 외 중국어는 간체 적용
+            } else if (['en', 'mn', 'ru', 'fr', 'es', 'kk', 'uz', 'ar', 'ja', 'id', 'th', 'vi', 'tl', 'my'].includes(langCode)) {
                 targetLang = langCode;
             }
             
@@ -65,7 +67,7 @@
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'ko', 
-                includedLanguages: 'ko,en,zh-CN,mn,ru,kk,uz,ar,ja,id,th,vi',
+                includedLanguages: 'ko,en,mn,ru,kk,uz,zh-CN,zh-TW,ar,ja,id,th,vi,tl,my,fr,es',
                 autoDisplay: false
             }, 'google_translate_element');
 
@@ -84,7 +86,7 @@
                 }
                 const selectField = document.getElementById('custom-lang-select');
                 if (selectField && selectField.value !== currentLang) {
-                    const validLangs = ['ko','en','zh-CN','mn','ru','kk','uz','ar','ja','id','th','vi'];
+                    const validLangs = ['ko','en','mn','ru','kk','uz','zh-CN','zh-TW','ar','ja','id','th','vi','tl','my','fr','es'];
                     if(validLangs.includes(currentLang)) {
                         selectField.value = currentLang;
                     }
@@ -193,16 +195,21 @@
                     <select id="custom-lang-select" onchange="changeLangManual(this.value)" class="bg-sky-50 border border-sky-200 text-sky-700 text-[10px] rounded-full py-1.5 pl-4 pr-8 font-bold cursor-pointer hover:bg-sky-100 transition-all shadow-sm">
                         <option value="ko">KOREAN (한국어)</option>
                         <option value="en">ENGLISH (영어)</option>
-                        <option value="zh-CN">CHINESE (중국어)</option>
                         <option value="mn">MONGOLIAN (몽골어)</option>
                         <option value="ru">RUSSIAN (러시아어)</option>
                         <option value="kk">KAZAKH (카자흐어)</option>
                         <option value="uz">UZBEK (우즈벡어)</option>
+                        <option value="zh-CN">CHINESE SIMPLIFIED (중국어 간체)</option>
+                        <option value="zh-TW">CHINESE TRADITIONAL (중국어 번체)</option>
                         <option value="ar">ARABIC (아랍어)</option>
                         <option value="ja">JAPANESE (일본어)</option>
                         <option value="id">INDONESIAN (인니어)</option>
                         <option value="th">THAI (태국어)</option>
                         <option value="vi">VIETNAMESE (베트남어)</option>
+                        <option value="tl">FILIPINO (필리핀어)</option>
+                        <option value="my">BURMESE (미얀마어)</option>
+                        <option value="fr">FRENCH (프랑스어)</option>
+                        <option value="es">SPANISH (스페인어)</option>
                     </select>
                     <div id="google_translate_element" style="position: absolute; left: -9999px; width: 0; height: 0; overflow: hidden; z-index: -1;"></div>
                     
