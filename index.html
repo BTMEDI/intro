@@ -176,9 +176,9 @@
     <!-- Navigation -->
     <nav class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-stone-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-bold">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <span class="text-2xl font-bold text-sky-700 tracking-tighter uppercase">BT MEDI</span>
+            <div class="flex justify-between h-16 items-center gap-2">
+                <div class="flex items-center shrink-0">
+                    <span class="text-2xl font-bold text-sky-700 tracking-tighter uppercase whitespace-nowrap">BT MEDI</span>
                 </div>
                 
                 <div class="hidden lg:flex items-center space-x-5 text-[11px] text-stone-600 uppercase">
@@ -191,8 +191,8 @@
                     <a href="#vip" class="text-sky-700">고객 혜택</a>
                 </div>
 
-                <div class="flex items-center ml-2">
-                    <select id="custom-lang-select" onchange="changeLangManual(this.value)" class="bg-sky-50 border border-sky-200 text-sky-700 text-[10px] rounded-full py-1.5 pl-4 pr-8 font-bold cursor-pointer hover:bg-sky-100 transition-all shadow-sm">
+                <div class="flex items-center justify-end min-w-0 flex-1 lg:flex-none">
+                    <select id="custom-lang-select" onchange="changeLangManual(this.value)" class="bg-sky-50 border border-sky-200 text-sky-700 text-[10px] rounded-full py-1.5 pl-3 pr-7 font-bold cursor-pointer hover:bg-sky-100 transition-all shadow-sm max-w-[110px] sm:max-w-[150px] md:max-w-[180px] lg:max-w-none truncate">
                         <option value="ko">KOREAN (한국어)</option>
                         <option value="en">ENGLISH (영어)</option>
                         <option value="mn">MONGOLIAN (몽골어)</option>
@@ -213,8 +213,8 @@
                     </select>
                     <div id="google_translate_element" style="position: absolute; left: -9999px; width: 0; height: 0; overflow: hidden; z-index: -1;"></div>
                     
-                    <!-- [추가됨] 모바일 메뉴 토글 버튼 (lg 화면에서는 숨김) -->
-                    <button id="mobile-menu-btn" class="ml-3 p-1 lg:hidden text-sky-700 hover:text-sky-900 focus:outline-none transition-colors" aria-label="메뉴 열기">
+                    <!-- [수정됨] 모바일 메뉴 버튼에 shrink-0 추가하여 밀려남 방지 -->
+                    <button id="mobile-menu-btn" class="ml-2 sm:ml-3 p-1 lg:hidden text-sky-700 hover:text-sky-900 focus:outline-none transition-colors shrink-0" aria-label="메뉴 열기">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
