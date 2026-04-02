@@ -19,8 +19,11 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Plotly.js -->
+     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+
+    <!-- [추가됨] 아이콘 사용을 위한 Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Google Translate API -->
     <script type="text/javascript">
@@ -202,10 +205,32 @@
                         <option value="vi">VIETNAMESE (베트남어)</option>
                     </select>
                     <div id="google_translate_element" style="position: absolute; left: -9999px; width: 0; height: 0; overflow: hidden; z-index: -1;"></div>
+                    
+                    <!-- [추가됨] 모바일 메뉴 토글 버튼 (lg 화면에서는 숨김) -->
+                    <button id="mobile-menu-btn" class="ml-3 p-1 lg:hidden text-sky-700 hover:text-sky-900 focus:outline-none transition-colors" aria-label="메뉴 열기">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- [추가됨] 모바일 전체화면 메뉴 오버레이 (초기 숨김) -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-white/98 backdrop-blur-md z-40 hidden flex-col pt-24 pb-6 px-6 h-screen overflow-y-auto">
+        <h2 class="text-xs font-bold text-stone-400 mb-6 tracking-[0.2em] uppercase border-b border-stone-200 pb-3">Menu</h2>
+        <nav class="flex flex-col gap-6 text-xl font-bold text-stone-800">
+            <a href="#about" class="mobile-menu-link hover:text-sky-600 transition-colors">기업 소개</a>
+            <a href="#organization" class="mobile-menu-link hover:text-sky-600 transition-colors">조직 구조</a>
+            <a href="#credentials" class="mobile-menu-link hover:text-sky-600 transition-colors">핵심 경쟁력</a>
+            <a href="#history" class="mobile-menu-link hover:text-sky-600 transition-colors">연혁</a>
+            <a href="#network" class="mobile-menu-link hover:text-sky-600 transition-colors">의료 네트워크</a>
+            <a href="#digital" class="mobile-menu-link hover:text-sky-600 transition-colors">디지털 플랫폼</a>
+            <a href="#vip" class="mobile-menu-link text-sky-700 transition-colors">고객 혜택</a>
+        </nav>
+        <div class="mt-auto pt-8 border-t border-stone-100">
+            <p class="text-[10px] text-stone-400 font-bold uppercase tracking-widest text-center">© 2026 BT MEDI.</p>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <header class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col items-center text-center fade-in">
@@ -650,6 +675,44 @@
     </footer>
 
     <script>
+        // --- [추가됨] Lucide 아이콘 초기화 ---
+        lucide.createIcons();
+
+        // --- [추가됨] 모바일 메뉴 제어 로직 ---
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu-overlay');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                // 메뉴 열기
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                menuBtn.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>'; // 아이콘을 'X'로 변경
+                document.body.style.overflow = 'hidden'; // 바탕 스크롤 방지
+            } else {
+                // 메뉴 닫기
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                menuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>'; // 아이콘을 햄버거로 복구
+                document.body.style.overflow = ''; // 스크롤 복구
+            }
+            lucide.createIcons(); // 아이콘 변경 적용
+        }
+
+        if (menuBtn) {
+            menuBtn.addEventListener('click', toggleMenu);
+        }
+
+        // 모바일 메뉴 항목 클릭 시 메뉴 오버레이 자동으로 닫기
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(isMenuOpen) toggleMenu();
+            });
+        });
+
         // --- HOSPITAL DATA ---
         const hospitalData = [
             { name: '서울대학교병원', cat: 'tertiary', tag: 'Big 5' },
